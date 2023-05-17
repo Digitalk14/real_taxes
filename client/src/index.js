@@ -1,18 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import GlobalStyles from './styles';
-import Pages from './pages';
-import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import {  RouterProvider } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+import { GlobalStyle } from "./globalstyle";
+import { router } from "./paths";
 
-const client = new ApolloClient({
-  uri: 'http://localhost:4000',
-  cache: new InMemoryCache(),
-});
-
-ReactDOM.render(
-  <ApolloProvider client={client}>
-    <GlobalStyles />
-    <Pages />
-  </ApolloProvider>,
-  document.getElementById('root')
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <ThemeProvider theme={{ fontFamily: "Helvetica Neue" }}>
+      <RouterProvider router={router} />
+      <GlobalStyle whiteColor />
+    </ThemeProvider>
+  </React.StrictMode>
 );
