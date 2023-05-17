@@ -2,31 +2,34 @@ const { RESTDataSource } = require("@apollo/datasource-rest");
 
 class TrackAPI extends RESTDataSource {
   // the Catstronauts catalog is hosted on this server
-  baseURL = "https://odyssey-lift-off-rest-api.herokuapp.com/";
+  baseURL = "http://127.0.0.1:5000/api/";
 
-  getTracksForHome() {
-    return this.get("tracks");
+  getTaxes() {
+    return this.get("get-taxes");
+  }
+  getCountryTaxes(countryId) {
+    return this.get(`get-taxes/${countryId}`)
   }
 
-  getAuthor(authorId) {
-    return this.get(`author/${authorId}`);
-  }
+  // getAuthor(authorId) {
+  //   return this.get(`author/${authorId}`);
+  // }
 
-  getTrack(trackId) {
-    return this.get(`track/${trackId}`);
-  }
+  // getTrack(trackId) {
+  //   return this.get(`track/${trackId}`);
+  // }
 
-  getTrackModules(trackId) {
-    return this.get(`track/${trackId}/modules`);
-  }
+  // getTrackModules(trackId) {
+  //   return this.get(`track/${trackId}/modules`);
+  // }
 
-  getModule(moduleId) {
-    return this.get(`module/${moduleId}`);
-  }
+  // getModule(moduleId) {
+  //   return this.get(`module/${moduleId}`);
+  // }
 
-  incrementTrackViews(trackId) {
-    return this.patch(`track/${trackId}/numberOfViews`);
-  }
+  // incrementTrackViews(trackId) {
+  //   return this.patch(`track/${trackId}/numberOfViews`);
+  // }
 }
 
 module.exports = TrackAPI;

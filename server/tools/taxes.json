@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Russia",
+    "id": 1,
+    "regions": [
+      {
+        "name": "Sakha",
+        "id": 14
+      }
+    ]
+  },
+  {
+    "name": "Canada",
+    "id": 2,
+    "regions": [
+      {
+        "name": "British columbia",
+        "id": 214
+      }
+    ]
+  }
+]
