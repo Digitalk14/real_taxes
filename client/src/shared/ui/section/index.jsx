@@ -1,16 +1,28 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const SectionStyle = styled.section`
+const SectionStyle = styled.section`
   width: 100%;
-  min-height: 100vh;
-  height: 100%;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: ${({ justify }) => justify || "center"};
   max-width: 960px;
+  margin: 0 auto;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  ${({ fixed }) =>
+    fixed &&
+    css`
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    `}
 `;
 
-export const Section = ({ children, justify }) => {
-  return <SectionStyle justify={justify}>{children}</SectionStyle>;
+export const Section = ({ children, justify, fixed }) => {
+  return (
+    <SectionStyle fixed={fixed} justify={justify}>
+      {children}
+    </SectionStyle>
+  );
 };
