@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Section, TaxValue } from "../shared";
-import { FirstScreen, SecondScreen } from "../widgets";
+import { FirstScreen, SecondScreen, FAQButton } from "../widgets";
 
 export const Main = () => {
   const [taxValue, setTaxValue] = useState('');
@@ -10,6 +10,7 @@ export const Main = () => {
         <FirstScreen />
         <SecondScreen />
       </Section>
+      <FAQButton />
     </TaxValue.Provider>
   );
 };
