@@ -1,10 +1,11 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { FormStyled, SubmitButton } from "./form.style";
 import { ScrollButton } from "../scroll-button";
+import { TaxValue } from "../../../shared";
 
 export const Form = () => {
+  const { taxValue, setTaxValue } = useContext(TaxValue);
   const [radioValue, setRadioValue] = useState("month");
-  const [salaryAmount, setSalaryAmount] = useState('');
   const handleChange = useCallback(
     (e) => {
       setRadioValue(e.target.value);
@@ -12,11 +13,9 @@ export const Form = () => {
     [radioValue]
   );
   const handleChangeInput = useCallback((e) => {
-    setSalaryAmount(e.target.value);
+    setTaxValue(e.target.value);
   }, []);
-  const handleSubmit = () => {
-
-  }
+  const handleSubmit = useCallback(() => {}, []);
   return (
     <FormStyled>
       <div className="labels-wrapper">
@@ -44,11 +43,11 @@ export const Form = () => {
         </label>
       </div>
       <div className="input-wrapper">
-        <input type="tel" value={salaryAmount} onChange={handleChangeInput} />
-        <ScrollButton handleClick={handleSubmit}>
-            <SubmitButton>
-                <p>Узнать</p>
-            </SubmitButton>
+        <input type="tel" value={taxValue} onChange={handleChangeInput} placeholder='Введите сумму'/>
+        <ScrollButton isValid={taxValue.length > 3} handleClick={handleSubmit}>
+          <SubmitButton>
+            <p>Узнать</p>
+          </SubmitButton>
         </ScrollButton>
       </div>
     </FormStyled>

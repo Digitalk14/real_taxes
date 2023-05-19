@@ -40,6 +40,10 @@ export const SubmitButton = styled.div`
   background: #118ab2;
   border-radius: 12px;
   padding: 7px 25px;
+  transition: all 200ms ease;
+  &: hover {
+    background: rgb(17 138 178 / 77%);
+  }
   p {
     color: #fff;
     font-size: 16px;
