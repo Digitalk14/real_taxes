@@ -6,9 +6,9 @@ const WrapperStyled = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: ${({ justify }) => justify ?? "center"};
 `;
 
-export const Wrapper = ({ children }) => {
-  return <WrapperStyled>{children}</WrapperStyled>;
+export const Wrapper = ({ children, justify }) => {
+  return <WrapperStyled justify={justify}>{children}</WrapperStyled>;
 };

@@ -14,7 +14,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     font-family: 'Cuprum', sans-serif;
   }
-  h1, h2 {
+  h1, h2, h3 {
     font-family: 'Russo One', sans-serif;
   }
   h1 {
