@@ -9,6 +9,7 @@ export const Wrapper = styled.div`
   padding: 16px;
   border-radius: 16px;
   margin: 30px 0 0 0;
+  transition: background 200ms ease;
   ul {
     margin: 15px 0 0 0;
     list-style: none;
@@ -32,6 +33,7 @@ export const Block = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 20%;
+  color: ${({ darkBackground }) => (darkBackground ? "#fff" : "#073b4c")};
 `;
 
 export const H3 = styled.h3`
