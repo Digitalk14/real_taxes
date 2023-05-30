@@ -21,6 +21,21 @@ const typeDefs = gql`
   type Country {
     id: ID!
     name: String!
+    taxes: [Tax!]!
+  }
+
+  type Tax {
+    id: ID!
+    name: String!
+    formula: String!
+    taxRate: String!
+    description: [TaxDescription!]!
+  }
+
+  type TaxDescription {
+    title: String!
+    list: [String!]!
+    weight: Float!
   }
 
   "Author of a complete Track or a Module"
