@@ -5,15 +5,27 @@ import { TaxValue } from "../../../shared";
 
 export const Form = () => {
   const { taxValue, setTaxValue } = useContext(TaxValue);
-  const [radioValue, setRadioValue] = useState("month");
   const handleChange = useCallback(
-    (e) => {
-      setRadioValue(e.target.value);
+    () => {
+      let sum = taxValue.value;
+      if (taxValue.period === "12") {
+        setTaxValue({
+          ...taxValue,
+          period: "1",
+          value: (sum = sum / 12),
+        });
+      } else {
+        setTaxValue({
+          ...taxValue,
+          period: "12",
+          value: (sum = sum * 12),
+        });
+      }
     },
-    [radioValue]
+    [taxValue]
   );
   const handleChangeInput = useCallback((e) => {
-    setTaxValue(e.target.value);
+    setTaxValue({ ...taxValue, value: e.target.value });
   }, []);
   const handleSubmit = useCallback(() => {}, []);
   return (
@@ -23,10 +35,10 @@ export const Form = () => {
           <input
             onChange={handleChange}
             id="month"
-            value="month"
+            value={1}
             name="radio"
             type="radio"
-            checked={radioValue === "month"}
+            checked={taxValue.period === String(1)}
           />
           <p>В этом месяце**</p>
         </label>
@@ -34,17 +46,22 @@ export const Form = () => {
           <input
             onChange={handleChange}
             id="year"
-            value="year"
+            value={12}
             name="radio"
             type="radio"
-            checked={radioValue === "year"}
+            checked={taxValue.period === String(12)}
           />
           <p>В этом году**</p>
         </label>
       </div>
       <div className="input-wrapper">
-        <input type="tel" value={taxValue} onChange={handleChangeInput} placeholder='Введите сумму'/>
-        <ScrollButton isValid={taxValue.length > 3} handleClick={handleSubmit}>
+        <input
+          type="tel"
+          value={taxValue.value}
+          onChange={handleChangeInput}
+          placeholder="Введите сумму"
+        />
+        <ScrollButton isValid={taxValue.value} handleClick={handleSubmit}>
           <SubmitButton>
             <p>Узнать</p>
           </SubmitButton>

@@ -1,7 +1,14 @@
 import React, { useContext, useState } from "react";
 import { useQuery, gql } from "@apollo/client";
-import { Wrapper, TaxValue, TaxTab, TaxBlock } from "../../shared";
-import { H2, TabWrapper } from "./second-screen.style";
+import {
+  Wrapper,
+  TaxValue,
+  TaxTab,
+  TaxBlock,
+  Pointer,
+  TaxesSum,
+} from "../../shared";
+import { H2, TabWrapper, Text } from "./second-screen.style";
 
 const GET_TAXES = gql`
   query ExampleQuery($getCountryTaxesId: ID!) {
@@ -38,10 +45,11 @@ export const SecondScreen = () => {
     return null;
   }
   const { taxes } = data.getCountryTaxes;
-  const taxBlockContent = taxes[activeIndex]
+  const taxBlockContent = taxes[activeIndex];
   return (
-    <Wrapper justify='flex-start'>
-      <H2>{taxValue}</H2>
+    <Wrapper justify="flex-start">
+      <H2>{taxValue.value} рублей</H2>
+      <Pointer index={activeIndex} />
       <TabWrapper>
         {taxes.map(({ taxRate, name }, i) => (
           <TaxTab
@@ -54,7 +62,8 @@ export const SecondScreen = () => {
           />
         ))}
       </TabWrapper>
-      <TaxBlock index={activeIndex} {...taxBlockContent}/>
+      <TaxBlock index={activeIndex} {...taxBlockContent} />
+      <TaxesSum />
     </Wrapper>
   );
 };

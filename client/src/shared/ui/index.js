@@ -5,3 +5,5 @@ export * from "./form";
 export * from "./divider";
 export * from "./tax-tab";
 export * from "./tax-block";
+export * from "./pointer";
+export * from "./taxes-sum";

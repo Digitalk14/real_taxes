@@ -3,7 +3,10 @@ import { Section, TaxValue } from "../shared";
 import { FirstScreen, SecondScreen, FAQButton } from "../widgets";
 
 export const Main = () => {
-  const [taxValue, setTaxValue] = useState(30000);
+  const [taxValue, setTaxValue] = useState({
+    value: 30000,
+    period: '1'
+  });
   return (
     <TaxValue.Provider value={{taxValue,setTaxValue}}>
       <Section>

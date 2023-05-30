@@ -11,4 +11,10 @@ export const TabWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-`
+`;
+
+export const Text = styled.p`
+  font-size: 24px;
+  text-align: center;
+  margin: 10px 0 0 0;
+`;

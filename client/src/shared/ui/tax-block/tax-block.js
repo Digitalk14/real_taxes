@@ -1,13 +1,12 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { COLORS, TaxValue } from "../../../shared";
 import { Wrapper, Subtitle, Block, H3 } from "./tax-block.style";
-import { getTaxValue } from "./getTaxValue";
+import { getTaxValue } from "../../../features";
 
 export const TaxBlock = ({ index, description, formula }) => {
-  const [prevIndex, setPrevIndex] = useState(index);
   useEffect(() => {}, []);
   const { taxValue } = useContext(TaxValue);
-  if (!taxValue) {
+  if (!taxValue.value) {
     return null;
   }
   const isDarkBackground = () => {
@@ -24,7 +23,7 @@ export const TaxBlock = ({ index, description, formula }) => {
         return false;
     }
   };
-  const { payedTax } = getTaxValue(formula, taxValue);
+  const { payedTax } = getTaxValue(formula, taxValue.value);
   return (
     <Wrapper backgroundColor={COLORS[index]}>
       {description.map(({ title, list, weight }) => (
