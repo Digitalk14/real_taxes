@@ -7,7 +7,9 @@ import {
   TaxBlock,
   Pointer,
   TaxesSum,
+  CountriesTaxes,
 } from "../../shared";
+import { addSpaces } from "../../features";
 import { H2, TabWrapper, Text } from "./second-screen.style";
 
 const GET_TAXES = gql`
@@ -46,9 +48,10 @@ export const SecondScreen = () => {
   }
   const { taxes } = data.getCountryTaxes;
   const taxBlockContent = taxes[activeIndex];
+  const payedSum = addSpaces(taxValue.value)
   return (
     <Wrapper justify="flex-start">
-      <H2>{taxValue.value} рублей</H2>
+      <H2>{payedSum} рублей</H2>
       <Pointer index={activeIndex} />
       <TabWrapper>
         {taxes.map(({ taxRate, name }, i) => (
@@ -64,6 +67,7 @@ export const SecondScreen = () => {
       </TabWrapper>
       <TaxBlock index={activeIndex} {...taxBlockContent} />
       <TaxesSum />
+      <CountriesTaxes />
     </Wrapper>
   );
 };

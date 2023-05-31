@@ -5,6 +5,25 @@ const typeDefs = gql`
     "Query to get tracks array for the homepage grid"
     getTaxes: [Country!]!
     getCountryTaxes(id: ID!): Country!
+    getCountriesTaxes: [CountryTax!]!
+    getCurrency: Currency!
+  }
+
+  type Currency {
+    name: String!
+    value: Float!
+  }
+
+  type CountryTax {
+    name: String!
+    iconCode: String!
+    taxRange: [TaxRange!]!
+  }
+
+  type TaxRange {
+    top: Float!
+    bottom: Float!
+    taxValue: Float!
   }
 
   type Mutation {
@@ -59,7 +78,6 @@ const typeDefs = gql`
     "The module's video url, for video-based modules"
     videoUrl: String
   }
-
 `;
 
 module.exports = typeDefs;

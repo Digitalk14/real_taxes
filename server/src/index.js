@@ -1,18 +1,14 @@
 const { ApolloServer } = require("@apollo/server");
 require("dotenv").config();
+const fetch = require("node-fetch");
 const { startStandaloneServer } = require("@apollo/server/standalone");
 
 const fastify = require("fastify");
 const taxes = require("../tools/taxes.json");
+const countriesTaxes = require("../tools/countries-taxes.json");
 
 const typeDefs = require("./schema");
 const resolvers = require("./resolvers");
-
-// const express = require("express");
-// const graphqlHTTP = require("graphql-http/lib/use/express");
-// const app = express();
-
-// const schema = require("./schema-mongodb");
 
 const app = fastify({ logger: true });
 
@@ -34,15 +30,35 @@ const start = async () => {
 };
 start();
 
+app.get("/api/get-currency", async (_, reply) => {
+  const currency = await fetch(
+    `https://api.freecurrencyapi.com/v1/latest?apikey=6T1IlLeW1UQm2i1dkCilsAby55Fu0xPwYB9bMmhv&currencies=RUB`,
+    {
+      method: "GET",
+    }
+  );
+  const currencyFetched = await currency.json();
+  const objCurrency = Object.entries(currencyFetched.data).map(([key,value]) => {
+    return {
+      name: key,
+      value,
+    };
+  })[0];
+  reply.send(objCurrency);
+});
+
 app.get("/api/get-taxes", (_, reply) => {
   reply.send(taxes);
+});
+
+app.get("/api/get-countries-taxes", (_, reply) => {
+  reply.send(countriesTaxes);
 });
 
 app.get("/api/get-taxes/:countryId", (request, reply) => {
   const { countryId } = request.params;
   const countryData = taxes.find((x) => `${x.id}` === countryId);
-  console.log(countryData);
-  reply.send(countryData)
+  reply.send(countryData);
 });
 
 const TrackAPI = require("./datasources/track-api");

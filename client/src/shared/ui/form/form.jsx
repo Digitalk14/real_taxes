@@ -5,27 +5,27 @@ import { TaxValue } from "../../../shared";
 
 export const Form = () => {
   const { taxValue, setTaxValue } = useContext(TaxValue);
-  const handleChange = useCallback(
-    () => {
-      let sum = taxValue.value;
-      if (taxValue.period === "12") {
-        setTaxValue({
-          ...taxValue,
-          period: "1",
-          value: (sum = sum / 12),
-        });
-      } else {
-        setTaxValue({
-          ...taxValue,
-          period: "12",
-          value: (sum = sum * 12),
-        });
-      }
-    },
-    [taxValue]
-  );
+  const handleChange = useCallback(() => {
+    let sum = taxValue.value;
+    if (taxValue.period === "12") {
+      setTaxValue({
+        ...taxValue,
+        period: "1",
+        value: (sum = sum / 12),
+      });
+    } else {
+      setTaxValue({
+        ...taxValue,
+        period: "12",
+        value: (sum = sum * 12),
+      });
+    }
+  }, [taxValue]);
   const handleChangeInput = useCallback((e) => {
-    setTaxValue({ ...taxValue, value: e.target.value });
+    const { value } = e.target;
+    if (value.length >= 1) {
+      setTaxValue({ ...taxValue, value: e.target.value });
+    }
   }, []);
   const handleSubmit = useCallback(() => {}, []);
   return (

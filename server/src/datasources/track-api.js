@@ -8,7 +8,13 @@ class TrackAPI extends RESTDataSource {
     return this.get("get-taxes");
   }
   getCountryTaxes(countryId) {
-    return this.get(`get-taxes/${countryId}`)
+    return this.get(`get-taxes/${countryId}`);
+  }
+  getCountriesTaxes() {
+    return this.get(`get-countries-taxes`);
+  }
+  getCurrency() {
+    return this.get("get-currency");
   }
 }
 

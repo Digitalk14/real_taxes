@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { COLORS, TaxValue } from "../../../shared";
 import { Wrapper, Subtitle, Block, H3 } from "./tax-block.style";
-import { getTaxValue } from "../../../features";
+import { getTaxValue, addSpaces } from "../../../features";
 
 export const TaxBlock = ({ index, description, formula }) => {
   useEffect(() => {}, []);
@@ -26,19 +26,23 @@ export const TaxBlock = ({ index, description, formula }) => {
   const { payedTax } = getTaxValue(formula, taxValue.value);
   return (
     <Wrapper backgroundColor={COLORS[index]}>
-      {description.map(({ title, list, weight }) => (
-        <Block key={title} darkBackground={isDarkBackground()}>
-          <div>
-            <Subtitle>{title}</Subtitle>
-            <ul>
-              {list.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-          <H3>~{Math.round((payedTax * weight) / 100)} руб.</H3>
-        </Block>
-      ))}
+      {description.map(({ title, list, weight }) => {
+        const sum = Math.round((payedTax * weight) / 100)
+        const sumSpaces = addSpaces(sum)
+        return (
+          <Block key={title} darkBackground={isDarkBackground()}>
+            <div>
+              <Subtitle>{title}</Subtitle>
+              <ul>
+                {list.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+            <H3>~ {sumSpaces} руб.</H3>
+          </Block>
+        );
+      })}
     </Wrapper>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useQuery, gql } from "@apollo/client";
-import { getTaxValue } from "../../../features";
+import { getTaxValue, addSpaces } from "../../../features";
 import { TaxValue } from "../../../shared";
 import { H2, Text, Wrapper } from "./taxes-sum.style";
 
@@ -24,7 +24,8 @@ export const TaxesSum = () => {
       const value = getTaxValue(formula, taxValue.value);
       taxesArray.push(value.payedTax);
     });
-    const sumTaxes = taxesArray.reduce((partialSum, a) => partialSum + a, 0);
+    const sumTaxes = Math.round(taxesArray.reduce((partialSum, a) => partialSum + a, 0));
+    const sumToString = addSpaces(sumTaxes);
     const handleTaxPeriod = () => {
       let sum = taxValue.value;
       if (taxValue.period === "12") {
@@ -44,7 +45,7 @@ export const TaxesSum = () => {
     const isMonthActive = taxValue.period === "1" ? true : false;
     return (
       <>
-        <H2>~{sumTaxes} рублей</H2>
+        <H2>~ {sumToString} рублей</H2>
         <Wrapper>
           <Text isActive={isMonthActive}>
             Инвестировано за <span onClick={handleTaxPeriod}>месяц</span>{" "}
