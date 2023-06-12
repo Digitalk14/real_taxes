@@ -5,7 +5,7 @@ import { addSpaces } from "../../../features";
 import { Wrapper, CountryBlock } from "./countries-taxes.style";
 
 const COUNTRIES_TAXES = gql`
-  query ExampleQuery {
+  query CountriesTaxes {
     getCountriesTaxes {
       name
       taxRange {
@@ -14,6 +14,8 @@ const COUNTRIES_TAXES = gql`
         taxValue
       }
       iconCode
+      additionalPaymets
+      currency
     }
   }
 `;
@@ -32,40 +34,44 @@ export const CountriesTaxes = () => {
   const currencyRequest = useQuery(GET_CURRENCY);
   let currencyValue;
   if (currencyRequest.data) {
-    currencyValue = currencyRequest.data.getCurrency.value;
+    currencyValue = currencyRequest.data.getCurrency;
   }
   const { taxValue } = useContext(TaxValue);
   if (loading) {
     return <>Loading</>;
-  } else if (data) {
+  } else if (data && currencyValue) {
     const countriesTaxes = data.getCountriesTaxes;
     return (
       <Wrapper>
-        {countriesTaxes.map(({ iconCode, name, taxRange }) => {
-          const payedTax =
-            taxValue.period === "12" ? taxValue.value : taxValue.value * 12;
-          const currency = currencyValue ?? 80;
-          const range = taxRange.find((x) => {
-            if (
-              x.bottom * currency < payedTax &&
-              payedTax <= x.top * currency
-            ) {
-              return true;
-            }
-            return false;
-          }).taxValue;
-          const countryPayedTax =
-            taxValue.period === "12"
-              ? (range * payedTax) / 100
-              : (range * payedTax) / 100 / 12;
-          return (
-            <CountryBlock key={iconCode}>
-              <img src={`/assets/images/icons/flags/${iconCode}.svg`} />
-              <p>{name}</p>
-              <h3>{addSpaces(countryPayedTax)} рублей</h3>
-            </CountryBlock>
-          );
-        })}
+        {countriesTaxes.map(
+          ({ iconCode, name, taxRange, currency, additionalPaymets }) => {
+            const payedTax =
+              taxValue.period === "12" ? taxValue.value : taxValue.value * 12;
+            const countryCurrency =
+              currencyValue.find((x) => x.name === currency).value ?? 80;
+            const range = taxRange.find((x) => {
+              if (
+                x.bottom < payedTax * countryCurrency &&
+                payedTax * countryCurrency <= x.top
+              ) {
+                return true;
+              }
+              return false;
+            }).taxValue;
+            const withAdditionalPayments = range + additionalPaymets;
+            const countryPayedTax =
+              taxValue.period === "12"
+                ? (withAdditionalPayments * payedTax) / 100
+                : (withAdditionalPayments * payedTax) / 100 / 12;
+            return (
+              <CountryBlock key={iconCode}>
+                <img src={`/assets/images/icons/flags/${iconCode}.svg`} />
+                <p>{name}</p>
+                <h3>~ {addSpaces(Math.round(countryPayedTax))} рублей</h3>
+              </CountryBlock>
+            );
+          }
+        )}
       </Wrapper>
     );
   }

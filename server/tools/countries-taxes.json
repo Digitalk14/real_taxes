@@ -2,83 +2,98 @@
   {
     "name": "Австралия",
     "iconCode": "au",
+    "currency": "AUD",
+    "additionalPaymets": 11.5,
     "taxRange": [
       {
-        "top": 4599,
+        "top": 18199,
         "bottom": 0,
         "taxValue": 0
       },
       {
-        "top": 28799,
-        "bottom": 4600,
-        "taxValue": 9
+        "top": 44999,
+        "bottom": 18200,
+        "taxValue": 19
       },
       {
-        "top": 100000000,
-        "bottom": 28800,
-        "taxValue": 30.3
+        "top": 119999,
+        "bottom": 45000,
+        "taxValue": 32.5
+      },
+      {
+        "top": 179999,
+        "bottom": 120000,
+        "taxValue": 37
+      },
+      {
+        "top": 10000000000,
+        "bottom": 180000,
+        "taxValue": 45
       }
     ]
   },
   {
     "name": "Австрия",
     "iconCode": "at",
+    "currency": "EUR",
+    "additionalPaymets": 39.35,
     "taxRange": [
       {
-        "top": 12499,
+        "top": 11000,
         "bottom": 0,
         "taxValue": 0
       },
       {
-        "top": 57999,
-        "bottom": 12500,
-        "taxValue": 36.5
+        "top": 18000,
+        "bottom": 11001,
+        "taxValue": 25
       },
       {
-        "top": 100000000,
-        "bottom": 58000,
+        "top": 31000,
+        "bottom": 18001,
+        "taxValue": 35
+      },
+      {
+        "top": 60000,
+        "bottom": 31001,
+        "taxValue": 42
+      },
+      {
+        "top": 90000,
+        "bottom": 60001,
+        "taxValue": 48
+      },
+      {
+        "top": 1000000,
+        "bottom": 9001,
         "taxValue": 50
-      }
-    ]
-  },
-  {
-    "name": "Бразилия",
-    "iconCode": "br",
-    "taxRange": [
-      {
-        "top": 5299,
-        "bottom": 0,
-        "taxValue": 0
       },
       {
-        "top": 10499,
-        "bottom": 5300,
-        "taxValue": 15
-      },
-      {
-        "top": 100000000,
-        "bottom": 10500,
-        "taxValue": 27.5
+        "top": 10000000000,
+        "bottom": 1000001,
+        "taxValue": 55
       }
     ]
   },
   {
     "name": "Великобритания",
     "iconCode": "gb",
+    "currency": "GBP",
+    "additionalPaymets": 13.8,
     "taxRange": [
       {
-        "top": 15499,
+        "top": 37700,
         "bottom": 0,
-        "taxValue": 0
-      },
-      {
-        "top": 48999,
-        "bottom": 15500,
         "taxValue": 20
       },
       {
-        "top": 100000000,
-        "bottom": 49000,
+        "top": 150000,
+        "bottom": 37701,
+        "taxValue": 40
+      },
+      {
+        "top": 10000000000,
+        "bottom": 150001,
         "taxValue": 45
       }
     ]
@@ -86,20 +101,27 @@
   {
     "name": "Германия",
     "iconCode": "de",
+    "currency": "EUR",
+    "additionalPaymets": 36.9,
     "taxRange": [
       {
-        "top": 8999,
+        "top": 9743,
         "bottom": 0,
         "taxValue": 0
       },
       {
-        "top": 11499,
-        "bottom": 9000,
-        "taxValue": 25.6
+        "top": 57917,
+        "bottom": 9744,
+        "taxValue": 14
       },
       {
-        "top": 100000000,
-        "bottom": 11500,
+        "top": 274611,
+        "bottom": 57918,
+        "taxValue": 42
+      },
+      {
+        "top": 10000000000,
+        "bottom": 274612,
         "taxValue": 45
       }
     ]
@@ -107,58 +129,66 @@
   {
     "name": "Испания",
     "iconCode": "es",
+    "currency": "EUR",
+    "additionalPaymets": 36.25,
     "taxRange": [
       {
-        "top": 20199,
+        "top": 12449,
         "bottom": 0,
+        "taxValue": 19
+      },
+      {
+        "top": 20199,
+        "bottom": 12450,
         "taxValue": 24
       },
       {
-        "top": 100000000,
+        "top": 35199,
         "bottom": 20200,
-        "taxValue": 51
+        "taxValue": 30
+      },
+      {
+        "top": 59999,
+        "bottom": 35200,
+        "taxValue": 37
+      },
+      {
+        "top": 299999,
+        "bottom": 60000,
+        "taxValue": 45
+      },
+      {
+        "top": 10000000000,
+        "bottom": 300000,
+        "taxValue": 47
       }
     ]
   },
   {
     "name": "Италия",
     "iconCode": "it",
+    "currency": "EUR",
+    "additionalPaymets": 40,
     "taxRange": [
       {
-        "top": 17099,
+        "top": 15000,
         "bottom": 0,
         "taxValue": 23
       },
       {
-        "top": 79999,
-        "bottom": 17100,
-        "taxValue": 36.5
+        "top": 28000,
+        "bottom": 15001,
+        "taxValue": 27
+      },
+      {
+        "top": 55000,
+        "bottom": 28001,
+        "taxValue": 38
       },
       {
         "top": 100000000,
-        "bottom": 80000,
-        "taxValue": 45
-      }
-    ]
-  },
-  {
-    "name": "Сингапур",
-    "iconCode": "sg",
-    "taxRange": [
-      {
-        "top": 15999,
-        "bottom": 0,
-        "taxValue": 0
-      },
-      {
-        "top": 235999,
-        "bottom": 16000,
-        "taxValue": 11
-      },
-      {
-        "top": 100000000,
-        "bottom": 236000,
-        "taxValue": 20
+        "bottom": 55001,
+        "taxValue": 43
       }
     ]
   }

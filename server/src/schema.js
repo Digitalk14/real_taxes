@@ -6,7 +6,7 @@ const typeDefs = gql`
     getTaxes: [Country!]!
     getCountryTaxes(id: ID!): Country!
     getCountriesTaxes: [CountryTax!]!
-    getCurrency: Currency!
+    getCurrency: [Currency]!
   }
 
   type Currency {
@@ -17,7 +17,9 @@ const typeDefs = gql`
   type CountryTax {
     name: String!
     iconCode: String!
+    additionalPaymets: Float!
     taxRange: [TaxRange!]!
+    currency: String!
   }
 
   type TaxRange {

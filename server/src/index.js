@@ -32,7 +32,7 @@ start();
 
 app.get("/api/get-currency", async (_, reply) => {
   const currency = await fetch(
-    `https://api.freecurrencyapi.com/v1/latest?apikey=6T1IlLeW1UQm2i1dkCilsAby55Fu0xPwYB9bMmhv&currencies=RUB`,
+    `https://api.freecurrencyapi.com/v1/latest?apikey=6T1IlLeW1UQm2i1dkCilsAby55Fu0xPwYB9bMmhv&currencies=EUR%2CGBP%2CAUD&base_currency=RUB`,
     {
       method: "GET",
     }
@@ -43,7 +43,7 @@ app.get("/api/get-currency", async (_, reply) => {
       name: key,
       value,
     };
-  })[0];
+  });
   reply.send(objCurrency);
 });
 
